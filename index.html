@@ -3,15 +3,36 @@
     <head>
         <!-- meta -->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="viewport" content="width=device-width">
         <title>Javascript Quiz</title>
         
         <!-- styles -->
-        
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/styles.css" rel="stylesheet">
         
         <!-- links -->
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <div class="wrapper">
+            <h1>Javascript Quiz</h1>
+            
+            <div class="quiz">
+                <h2>This is where the question will go?</h2>
+                <p class="choices">
+                    <span id="one">Choice One</span>
+                    <span id="two">Choice Two</span>
+                    <span id="three">Choice Three</span>
+                    <span id="four">Choice Four</span>
+                </p>
+            </div>
+            <div class="buttons">
+                <button class="prev">Prev</button>
+                <button class="next">Next</button>
+            </div>
+            <!-- use bootstrap for this -->
+            <div class="completion-tracker"></div>
+        </div>
+        
+        <script src="assets/js/scripts.js"></script>
     </body>
 </html>
