@@ -36,7 +36,7 @@ a:hover {
 
 /*
 
-
+custom
 
 */
 
@@ -49,4 +49,9 @@ a:hover {
     border: 1px solid black;
     margin: 0 auto;
     padding: 0;
+}
+
+span {
+    display: block;
+    margin: 10px auto;
 }
