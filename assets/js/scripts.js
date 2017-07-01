@@ -1,25 +1,31 @@
-var count = 0;
+// global variables
+var count, choices, question, nextButton, prevButton;
+count = 0;
 
-var choices = document.querySelectorAll('.choices');
-var question = document.getElementsByTagName('h2')[0];
-var nextButton = document.getElementsByClassName('next')[0];
-var prevButton = document.getElementsByClassName('prev')[0];
 
-window.onload = function() {
+// grab html elements
+choices = document.querySelectorAll('.choices');
+question = document.getElementsByTagName('h2')[0];
+nextButton = document.getElementsByClassName('next')[0];
+prevButton = document.getElementsByClassName('prev')[0];
+
+
+// add the event listeners
+window.onload = renderQuestion();
+nextButton.addEventListener('click', nextQuestion);
+prevButton.addEventListener('click', prevQuestion);
+
+
+// functions used
+function nextQuestion() {
+    count++;
     renderQuestion();
 }
 
-nextButton.addEventListener('click', function(ev) {
-    count++;
-    renderQuestion();
-});
-
-prevButton.addEventListener('click', function(ev) {
+function prevQuestion() {
     count--;
     renderQuestion();
-});
-
-
+}
 
 function renderQuestion() {
     question.innerText = questions[count].question;
