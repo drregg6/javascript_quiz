@@ -1,5 +1,5 @@
 // global variables
-var count, choices, question, nextButton, prevButton, progressBar;
+var count, choices, question, nextButton, prevButton, progressBar, progressPercentage;
 count = 0;
 
 
@@ -8,7 +8,8 @@ choices = document.querySelectorAll('.choices');
 question = document.getElementsByTagName('h2')[0];
 nextButton = document.getElementsByClassName('next')[0];
 prevButton = document.getElementsByClassName('prev')[0];
-progressBar = document.getElementsByClassName('progress-bar')[0];
+progressBar = document.getElementsByClassName('progress')[0];
+progressPercentage = document.getElementsByClassName('progress-bar')[0];
 
 
 // add the event listeners
