@@ -12,8 +12,10 @@ TODO:
 */
 
 // global variables
-var count, choices, question, nextButton, prevButton, progressBar, progressPercentage;
+var count, choices, question, nextButton, prevButton, progress, progressBar, progressPercentage, score, scorePercentage;
 count = 0;
+score = 0;
+scorePercentage = Math.round(score/20);
 
 
 // grab html elements
@@ -22,7 +24,7 @@ question = document.getElementsByTagName('h2')[0];
 nextButton = document.getElementsByClassName('next')[0];
 prevButton = document.getElementsByClassName('prev')[0];
 progressBar = document.getElementsByClassName('progress')[0];
-progressPercentage = document.getElementsByClassName('progress-bar')[0];
+progress = document.getElementsByClassName('progress-bar')[0];
 
 
 // add the event listeners
@@ -54,4 +56,11 @@ function renderQuestion() {
     choices.forEach(function(choice, i) {
         choice.innerText = questions[count].choices[i];
     });
+    
+    updateProgress();
+}
+
+function updateProgress() {
+    progressPercentage = Math.round((count/20) * 100);
+    progress.style.width = progressPercentage + '%';
 }
