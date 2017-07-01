@@ -1,3 +1,16 @@
+/*
+
+TODO:
+1. Update progressPercentage as the quiz continues
+    width: 1/20; etc...
+2. if (the clicked choice is correct)
+        score = score + 1
+    else
+        score = score
+3. Create a page for when the user completes the quiz
+
+*/
+
 // global variables
 var count, choices, question, nextButton, prevButton, progressBar, progressPercentage;
 count = 0;

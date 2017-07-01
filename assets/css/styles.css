@@ -1,3 +1,12 @@
+/*
+
+TODO:
+1. Make the buttons sexy
+2. or Remove the buttons altogether
+3. Style colors
+
+*/
+
 body, html, div, blockquote,
 img, label, p,
 h1, h2, h3, h4, h5, h6,
@@ -134,6 +143,6 @@ media
     }
     
     .buttons {
-        bottom: -25%;
+        bottom: -20%;
     }
 }
