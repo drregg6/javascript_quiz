@@ -19,11 +19,17 @@ prevButton.addEventListener('click', prevQuestion);
 // functions used
 function nextQuestion() {
     count++;
+    if (count >= 20) {
+        count = 19;
+    }
     renderQuestion();
 }
 
 function prevQuestion() {
     count--;
+    if (count < 0) {
+        count = 0;
+    }
     renderQuestion();
 }
 

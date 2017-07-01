@@ -21,7 +21,7 @@ questions = [
     },
     {
         number: 3,
-        question: 'What cult inspired Timothy McReign, the Oklahoma City Bomber, to do what he did?',
+        question: 'What cult inspired Timothy McVeigh, the Oklahoma City Bomber, to do what he did?',
         choices: ['The Branen Dividians', 'Children of God', 'The Manson Family', 'Aum Shinrikyo'],
         answer: 0
     },
