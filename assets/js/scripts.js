@@ -1,17 +1,17 @@
 /*
 
 TODO:
-1. Create a page for when the user completes the quiz
+
 
 */
 
 // global variables
-var count; 
-var choices, choiceOne, choiceTwo, choiceThree, choiceFour, question, answer;
-var nextButton, prevButton, progress, progressBar, progressPercentage, score, scorePercentage;
+var count, score, scorePercentage, html; 
+var choices, question, answer;
+var quizDiv, nextButton, prevButton, progress, progressBar, progressPercentage;
 count = 0;
 score = 0;
-scorePercentage = Math.round(score/20);
+
 
 
 // grab html elements
@@ -21,6 +21,8 @@ nextButton = document.getElementsByClassName('next')[0];
 prevButton = document.getElementsByClassName('prev')[0];
 progressBar = document.getElementsByClassName('progress')[0];
 progress = document.getElementsByClassName('progress-bar')[0];
+quizDiv = document.getElementsByClassName('quiz')[0];
+
 
 
 // add the event listeners
@@ -33,14 +35,19 @@ choices.forEach(function(choice) {
 });
 
 
+
 // functions used
 function nextQuestion() {
     count++;
-    if (count >= 20) {
-        count = 19;
-    }
+    if (count > 20) {
+        count = 20;
+    } else if (count !== 20) {
+        renderQuestion();
+    } else if (count === 20) {
+        renderCompletion();
+    } 
     
-    renderQuestion();
+//    renderQuestion();
 }
 
 function prevQuestion() {
@@ -85,4 +92,16 @@ function scoring() {
     }
     
     nextQuestion();
+}
+
+
+
+function renderCompletion() {
+    updateProgress();
+    scorePercentage = Math.round(score/20 * 100) + '%';
+    
+    html = '<h2>Thank You for Completing the Quiz!</h2>';
+    html += '<p>Your score is: ' + scorePercentage + '</p>';
+    
+    quizDiv.innerHTML = html;
 }
