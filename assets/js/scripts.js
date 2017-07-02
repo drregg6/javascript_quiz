@@ -1,11 +1,7 @@
 /*
 
 TODO:
-1. if (the clicked choice is correct)
-        score = score + 1
-    else
-        score = score
-2. Create a page for when the user completes the quiz
+1. Create a page for when the user completes the quiz
 
 */
 
@@ -20,10 +16,6 @@ scorePercentage = Math.round(score/20);
 
 // grab html elements
 choices = document.querySelectorAll('.choices');
-choiceOne = choices[0];
-choiceTwo = choices[1];
-choiceThree = choices[2];
-choiceFour = choices[3];
 question = document.getElementsByTagName('h2')[0];
 nextButton = document.getElementsByClassName('next')[0];
 prevButton = document.getElementsByClassName('prev')[0];
@@ -35,19 +27,9 @@ progress = document.getElementsByClassName('progress-bar')[0];
 window.onload = renderQuestion();
 nextButton.addEventListener('click', nextQuestion);
 prevButton.addEventListener('click', prevQuestion);
-choices.forEach(function(choice, i) {
-    choice.addEventListener('click', function(ev) {
-        // var target = ev.target;
-        // console.log(this);
-        // console.log(questions[i].choices);
-        scoring();
-        
-        // console.log(this.innerText);
-        // console.log(questions[count].choices[answer]);
-        // console.log(this.innerText === questions[count].choices[answer]);
-        
-        nextQuestion();
-    });
+
+choices.forEach(function(choice) {
+    choice.addEventListener('click', scoring);
 });
 
 
@@ -92,24 +74,15 @@ function updateProgress() {
 }
 
 
-// the other quiz had a param to keep track of the current question
-// I'm totally against params because I want to continue using this
 
-// choices will have two event listeners
-    // one event listener to move to the next question
-    // the other event listener will keep track of correct vs incorrect answers
 function scoring() {
     answer = questions[count].answer;
     
-    // needs to keep track of which choice is clicked
-    // i is undefined in this function
-    console.log(questions[count].choices[i]);
-    console.log(this.answer);
-    console.log(answer);
-    // THIS means WINDOW here
     if (this.innerText === questions[count].choices[answer]) {
         score++;
     } else {
         score = score;
     }
+    
+    nextQuestion();
 }
