@@ -1,20 +1,20 @@
 /*
 
 TODO:
-1. prevButton will need to remove a score if the correct answer was picked
-    maybe use a flag as a "correct answer was clicked"
-    only allow prevButton for the question you are on
-2. resetQuiz on completion page
-3. Comment functions so you know what's goin' on
 
 */
 
 // global variables
-var count, score, scorePercentage, html; 
-var choices, question, answer, resultsPara, choicesPara;
-var quizDiv, resetButton, prevButton, progress, progressBar, progressPercentage;
+var count, score, scorePercentage, answer; // tracking variables
+var correctAnswer, prevFlag; // flags
+var choices, question, resultsPara, choicesPara; // elements being updated
+var resetButton, prevButton; // buttons
+var progress, progressPercentage; // progress bar
+// set tracking variables
 count = 0;
 score = 0;
+correctAnswer = false;
+prevFlag = false;
 
 
 
@@ -23,11 +23,10 @@ choices = document.querySelectorAll('.choices');
 question = document.getElementsByTagName('h2')[0];
 resultsPara = document.getElementsByTagName('p')[0];
 choicesPara = document.getElementsByTagName('p')[1];
+
 resetButton = document.getElementsByClassName('reset')[0];
 prevButton = document.getElementsByClassName('prev')[0];
-progressBar = document.getElementsByClassName('progress')[0];
 progress = document.getElementsByClassName('progress-bar')[0];
-quizDiv = document.getElementsByClassName('quiz')[0];
 
 
 
@@ -43,24 +42,57 @@ choices.forEach(function(choice) {
 
 
 // functions used
+function scoring() {
+    // grab the answer of the current question
+    answer = questions[count].answer;
+    // prevButton is visible when a choice is selected
+    prevFlag = true;
+    
+    // THIS is the span.choice that the user clicked
+    if (this.innerText === questions[count].choices[answer]) {
+        // correctAnswer waves for prevButton use
+        correctAnswer = true;
+        score++;
+    } else {
+        correctAnswer = false;
+    }
+    
+    // then render next question
+    nextQuestion();
+}
+
+
+
 function nextQuestion() {
+    // count goes up
     count++;
     
     if (count > 20) {
         count = 20;
     } else if (count !== 20) {
+        // numbers between 0 and 20 have questions that can be rendered
         renderQuestion();
     } else if (count === 20) {
+        // quiz is over when count reaches 20
         renderCompletion();
     }
 }
 
+
+
+// the prevButton will only be available to go back one question
 function prevQuestion() {
-    count--;
-    if (count < 0) {
-        count = 0;
+    // when the previous question renders, remove the prevButton
+    prevFlag = false;
+    
+    // if the user originally clicked the correctAnswer, remove score
+    if (correctAnswer) {
+        correctAnswer = false;
+        score--;
     }
     
+    // then go back and render the old question
+    count--;
     renderQuestion();
 }
 
@@ -68,14 +100,19 @@ function prevQuestion() {
 
 
 function renderQuestion() {
-    if (count === 0) {
+    
+    // prevButton is hidden on the first page
+    // and if the user attempts to go back more than one question
+    if (!prevFlag) {
         prevButton.classList.add('hide');
     } else if (prevButton.classList.contains('hide')) {
         prevButton.classList.remove('hide');
     }
     
+    // update question div with current question
     question.innerText = questions[count].question;
     
+    // update each choice with the choices available in current question
     choices.forEach(function(choice, i) {
         choice.innerText = questions[count].choices[i];
     });
@@ -87,9 +124,11 @@ function renderCompletion() {
     updateProgress();
     scorePercentage = Math.round(score/20 * 100) + '%';
     
+    // update with a thank you note and the user's percentage
     question.innerText = 'Thank you for Completing the Quiz!';
     resultsPara.innerText = 'Your score is: ' + scorePercentage;
     
+    // reset avail, prevButton and choicesPara are removed
     choicesPara.classList.add('hide');
     prevButton.classList.add('hide');
     resetButton.classList.remove('hide');
@@ -97,33 +136,26 @@ function renderCompletion() {
 
 
 
-function scoring() {
-    answer = questions[count].answer;
-    
-    if (this.innerText === questions[count].choices[answer]) {
-        score++;
-    } else {
-        score = score;
-    }
-    
-    nextQuestion();
-}
-
-
-
 function updateProgress() {
+    // progress bar will be updated as count goes up
     progressPercentage = Math.round((count/20) * 100);
     progress.style.width = progressPercentage + '%';
 }
 
 
 function resetQuiz() {
+    // reset tracking variables
     count = 0;
     score = 0;
+    correctAnswer = false;
+    prevFlag = false;
     
+    // resultsPara is hidden
     resultsPara.innerText = '';
     
+    // choicesPara displays while resetButton is hidden
     choicesPara.classList.remove('hide');
     resetButton.classList.add('hide');
+    
     renderQuestion();
 }
