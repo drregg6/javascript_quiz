@@ -2,8 +2,7 @@
 
 TODO:
 1. Make the buttons sexy
-2. or Remove the buttons altogether
-3. Style colors
+2. Create a better design
 
 */
 
@@ -115,6 +114,16 @@ span:hover {
 
 button:focus {
     outline: none;
+}
+
+/*
+
+custom
+
+*/
+
+.hide {
+    display: none;
 }
 
 /*
