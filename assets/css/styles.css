@@ -1,10 +1,9 @@
-/*
+/* ---------------------------------------------------------
 
 TODO:
-1. Make the buttons sexy
-2. Create a better design
+1. Create a better design
 
-*/
+--------------------------------------------------------- */
 
 body, html, div, blockquote,
 img, label, p,
@@ -42,11 +41,17 @@ a:hover {
     padding: .5em 0 .5em .5em;
 }
 
-/*
+/* ---------------------------------------------------------
 
 custom
 
-*/
+--------------------------------------------------------- */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
 
 .wrapper {
     font-size: 14px;
@@ -96,7 +101,7 @@ span {
     width: 60%;
     padding: 10px;
     
-    transition: all 0.25s;
+    transition: all 0.15s;
 }
 span:hover {
     cursor: pointer;
@@ -112,27 +117,54 @@ span:hover {
     right: 0;
 }
 
+.buttons button {
+    padding: 15px 45px;
+    background: #fafafa;
+    border: 1px solid #f00;
+    
+    color: #f00;
+    
+    transition: all .15s;
+}
+.buttons button:hover {
+    border-color: #fafafa;
+    color: #fafafa;
+    
+    background: #f00;
+}
+
+.buttons button.reset {
+    border-color: #00f;
+    color: #00f;
+}
+.buttons button.reset:hover {
+    border-color: #fafafa;
+    color: #fafafa;
+    
+    background: #00f;
+}
+
 button:focus {
     outline: none;
 }
 
-/*
+/* ---------------------------------------------------------
 
 custom
 
-*/
+--------------------------------------------------------- */
 
 .hide {
     display: none;
 }
 
-/*
+/* ---------------------------------------------------------
 
 media
 
-*/
+--------------------------------------------------------- */
 
-@media only screen and (min-width: 660px) {
+@media only screen and (min-width: 660px) { /* desktop+ */
     .quiz {
         margin: 100px auto;
         width: 660px;
